@@ -1,4 +1,4 @@
-package guru.springframework.sfgpetclinic.model;
+package guru.springframework.petclinicdata.model;
 
 public class Vet extends Person {
 
