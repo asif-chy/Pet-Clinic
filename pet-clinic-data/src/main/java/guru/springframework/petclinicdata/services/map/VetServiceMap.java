@@ -3,9 +3,10 @@ package guru.springframework.petclinicdata.services.map;
 import java.util.Set;
 
 import guru.springframework.petclinicdata.model.Vet;
-import guru.springframework.petclinicdata.services.CrudService;
 
-public class VetService extends AbstractMapService<Vet, Long> implements CrudService<Vet,Long>{
+import guru.springframework.petclinicdata.services.VetService;
+
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
 	public Set<Vet> findAll(){
 		return super.findAll();
