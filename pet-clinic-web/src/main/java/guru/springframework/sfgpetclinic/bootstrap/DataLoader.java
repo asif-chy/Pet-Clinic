@@ -26,7 +26,7 @@ public class DataLoader implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 		Owner owner1 = new Owner();
-		owner1.setId(1L);
+		
 		owner1.setLastName("CHY");
 		owner1.setFirstName("ASIF");
 		
@@ -34,8 +34,17 @@ public class DataLoader implements CommandLineRunner {
 		
 		System.out.println("Insert Owner1");
 		
+	    Owner owner2 = new Owner();
+		
+		owner2.setLastName("JACK");
+		owner2.setFirstName("RABBIT");
+		
+		ownerService.save(owner2);
+		
+		System.out.println("Insert Owner2");
+		
 		Vet vet1 = new Vet();
-		vet1.setId(1L);
+		
 		vet1.setLastName("DOGGO");
 		vet1.setFirstName("MAN");
 		

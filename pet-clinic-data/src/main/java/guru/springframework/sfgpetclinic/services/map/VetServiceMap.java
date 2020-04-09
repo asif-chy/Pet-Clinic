@@ -19,7 +19,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
 	}
 	
 	public Vet save(Vet vet) {
-		return super.save(vet.getId(), vet);
+		return super.save(vet);
 	}
 	
 	public void delete(Vet vet) {

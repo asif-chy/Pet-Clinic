@@ -20,7 +20,7 @@ public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetS
 	}
 	
 	public Pet save(Pet pet) {
-		return super.save(pet.getId(), pet);
+		return super.save(pet);
 	}
 	
 	public void delete(Pet pet) {
