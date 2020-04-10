@@ -16,7 +16,7 @@
   <url>http://www.example.com</url>
 
   <properties>
-    <spring-boot.package.skip>true</spring-boot.package.skip>
+    <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
   </properties>
 
   <dependencies>
