@@ -1,10 +1,17 @@
 package guru.springframework.sfgpetclinic.model;
 
+import java.util.Set;
+
 public class Vet extends Person {
 
-	public Vet() {
-		super();
-		// TODO Auto-generated constructor stub
+	private Set<Speciality> speciality;
+
+	public Set<Speciality> getSpeciality() {
+		return speciality;
 	}
 
+	public void setSpeciality(Set<Speciality> speciality) {
+		this.speciality = speciality;
+	}
+	
 }
