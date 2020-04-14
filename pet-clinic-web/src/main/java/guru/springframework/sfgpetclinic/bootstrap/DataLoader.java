@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
+import guru.springframework.sfgpetclinic.model.Speciality;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.*;
 
@@ -19,9 +20,11 @@ public class DataLoader implements CommandLineRunner {
 	private final PetService petService;
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
+	private final SpecialityService specilityService;
 	
 	public DataLoader(OwnerService ownerService, PetService petService, VetService vetService,
-			PetTypeService petTypeService) {
+			PetTypeService petTypeService, SpecialityService specilityService) {
+		this.specilityService = specilityService;
 		this.ownerService = ownerService;
 		this.petService = petService;
 		this.vetService = vetService;
@@ -34,6 +37,14 @@ public class DataLoader implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
+	int count = petTypeService.findAll().size();
+		
+	if(count == 0) {
+		loadData();
+	}
+	}
+
+	private void loadData() {
 		PetType dog = new PetType();
 		dog.setName("Dog");
 		PetType savedDogType = petTypeService.save(dog);
@@ -45,6 +56,18 @@ public class DataLoader implements CommandLineRunner {
 		PetType savedCatType = petTypeService.save(cat);
 		
 		System.out.println("Insert cat");
+		
+		Speciality radiology = new Speciality();
+		radiology.setDescription("Radiology");
+		specilityService.save(radiology);
+		
+		Speciality Surgery = new Speciality();
+		radiology.setDescription("Surgery");
+		specilityService.save(Surgery);
+		
+		Speciality Dentistry = new Speciality();
+		radiology.setDescription("Dentistry");
+		specilityService.save(Dentistry);
 		
 		
 		Owner owner1 = new Owner();
@@ -85,8 +108,19 @@ public class DataLoader implements CommandLineRunner {
 		
 		vet1.setLastName("DOGGO");
 		vet1.setFirstName("MAN");
+		vet1.getSpeciality().add(radiology);
 		
 		vetService.save(vet1);
+		
+		System.out.println("Insert Vet1");
+		
+		Vet vet2 = new Vet();
+		
+		vet2.setLastName("CATTO");
+		vet2.setFirstName("MAN");
+		vet2.getSpeciality().add(Surgery);
+		
+		vetService.save(vet2);
 		
 		System.out.println("Insert Vet1");
 	}
