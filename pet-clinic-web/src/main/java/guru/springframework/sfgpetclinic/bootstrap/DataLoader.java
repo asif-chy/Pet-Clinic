@@ -10,6 +10,7 @@ import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.model.Speciality;
 import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.model.Visit;
 import guru.springframework.sfgpetclinic.services.*;
 
 
@@ -21,9 +22,11 @@ public class DataLoader implements CommandLineRunner {
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
 	private final SpecialityService specilityService;
+	private final VisitService visitService;
 	
 	public DataLoader(OwnerService ownerService, PetService petService, VetService vetService,
-			PetTypeService petTypeService, SpecialityService specilityService) {
+			PetTypeService petTypeService, SpecialityService specilityService, VisitService visitService) {
+		this.visitService = visitService;
 		this.specilityService = specilityService;
 		this.ownerService = ownerService;
 		this.petService = petService;
@@ -86,6 +89,15 @@ public class DataLoader implements CommandLineRunner {
 		ownerService.save(owner1);
 		System.out.println("Insert Owner1");
 		
+		Visit visitOne = new Visit();
+		visitOne.setPet(myPet);
+		visitOne.setDate(LocalDate.now());
+		visitOne.setDescription("Crazy JOJO");
+		
+		visitService.save(visitOne);
+		
+		System.out.println("Inser Visit One");
+		
 	    Owner owner2 = new Owner();
 		
 		owner2.setLastName("JACK");
@@ -122,7 +134,10 @@ public class DataLoader implements CommandLineRunner {
 		
 		vetService.save(vet2);
 		
-		System.out.println("Insert Vet1");
+		System.out.println("Insert Vet2");
+		
+		
+		
 	}
 
 }

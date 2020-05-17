@@ -24,7 +24,7 @@ public class Pet extends BaseEntity {
 	private PetType petType;
 	
 	@ManyToOne
-	@JoinColumn(name="Owner_Id")
+	@JoinColumn(name="owner_id")
 	private Owner owner;
 	
 	@Column(name="Birth_Date")

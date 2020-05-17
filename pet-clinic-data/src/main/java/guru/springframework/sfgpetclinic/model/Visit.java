@@ -10,9 +10,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="visit")
-public class Visit {
+public class Visit extends BaseEntity{
 	
-	
+	@ManyToOne
+	@JoinColumn(name="pet_id")
 	private Pet pet;
 	
 	@Column(name="Date")
@@ -21,8 +22,7 @@ public class Visit {
 	@Column(name="Description")
 	private String description;
 	
-	@ManyToOne
-	@JoinColumn(name="pet_id")
+
 	public Pet getPet() {
 		return pet;
 	}

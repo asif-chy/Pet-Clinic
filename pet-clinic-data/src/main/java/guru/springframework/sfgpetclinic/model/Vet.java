@@ -13,6 +13,15 @@ import javax.persistence.Table;
 @Table(name="vet")
 public class Vet extends Person {
 
+	public Vet(Long id, String firstName, String lastName) {
+		super(id, firstName, lastName);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Vet() {
+		super();
+	}
+
 	@ManyToMany(fetch= FetchType.EAGER)
 	@JoinTable(name="vet_specialties", joinColumns = @JoinColumn(name="vet_id"),
 	inverseJoinColumns = @JoinColumn(name="specialty_id"))
