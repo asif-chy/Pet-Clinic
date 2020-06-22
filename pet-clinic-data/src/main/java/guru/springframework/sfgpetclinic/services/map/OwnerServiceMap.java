@@ -80,4 +80,17 @@ public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements O
 		return this.findAll().stream().filter(owner -> owner.getLastName().equalsIgnoreCase(lastName)).findFirst().orElse(null);
 	}
 
+
+	@Override
+	public java.util.List<Owner> findAllByLastNameLike(String lastName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+
+
 }
