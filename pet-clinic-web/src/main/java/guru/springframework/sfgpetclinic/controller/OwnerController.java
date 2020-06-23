@@ -2,6 +2,8 @@ package guru.springframework.sfgpetclinic.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import guru.springframework.sfgpetclinic.model.Owner;
@@ -75,5 +78,50 @@ public class OwnerController {
 		}
 
 	}
+	
+	@GetMapping("/owners/new")
+	public String viewCreateForm(Model model) {
+		
+		model.addAttribute("owner", Owner.builder().build());
+		
+		return "owners/createOrUpdateOwnerForm";
+	}
+	
+	@PostMapping("/owners/new")
+	public String processCreateForm(@Valid Owner owner, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			return "owners/createOrUpdateOwnerForm";
+		}else {
+			
+			Owner savedOwner = ownerService.save(owner);
+			return"redirect:/owners/"+savedOwner.getId();
+		}
+		
+		
+	}
+	
+	@GetMapping("owners/{ownerId}/edit")
+	public String viewUpdateForm(@PathVariable Long ownerId, Model model) {
+		
+		Owner owner = ownerService.findById(ownerId);
+		
+		model.addAttribute("owner", owner);
+		
+		return "owners/createOrUpdateOwnerForm";
+	}
+	
+	@PostMapping("owners/{ownerId}/edit")
+	public String processUpdateForm(Owner owner, BindingResult result, @PathVariable Long ownerId) {
+		if(result.hasErrors()) {
+			return "owners/createOrUpdateOwnerForm";
+		}else {
+			owner.setId(ownerId);
+			Owner savedOwner = ownerService.save(owner);
+			
+			return"redirect:owners/"+savedOwner.getId();
+		}
+	}
+	
 
 }
