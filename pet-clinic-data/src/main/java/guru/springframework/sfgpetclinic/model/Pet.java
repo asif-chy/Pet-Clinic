@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Builder;
+
 @Entity
 @Table(name="pets")
 public class Pet extends BaseEntity {
@@ -33,6 +35,23 @@ public class Pet extends BaseEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="pet")
 	private Set<Visit> visit = new HashSet<>();
 	
+	
+	
+	@Builder
+	public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visit) {
+		super(id);
+		this.name = name;
+		this.petType = petType;
+		this.owner = owner;
+		this.birthDate = birthDate;
+		
+		if(null == visit || visit.size() > 0) {
+		this.visit = visit;
+		}
+	}
+	public Pet() {
+		// TODO Auto-generated constructor stub
+	}
 	public Set<Visit> getVisit() {
 		return visit;
 	}
